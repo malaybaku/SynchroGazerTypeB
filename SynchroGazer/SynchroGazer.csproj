@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7D9BDC1F-6B03-41B1-B377-EACD29271417}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Baku.SynchroGazer</RootNamespace>
+    <AssemblyName>SynchroGazer</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Exe\WPF\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Exe\WPF\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon\Synchrogazer.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.3.1.953, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.2.3.1.953\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Tobii.Interaction.Model, Version=0.7.3.333, Culture=neutral, PublicKeyToken=70326046dcdce6cb, processorArchitecture=MSIL">
+      <HintPath>..\packages\Tobii.Interaction.0.7.3\lib\net45\Tobii.Interaction.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="Tobii.Interaction.Net, Version=0.7.3.333, Culture=neutral, PublicKeyToken=70326046dcdce6cb, processorArchitecture=MSIL">
+      <HintPath>..\packages\Tobii.Interaction.0.7.3\lib\net45\Tobii.Interaction.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="..\..\Unity\Synchrogazer\Assets\Synchrogazer\Scripts\CommonSetting\SettingFile.cs">
+      <Link>Models\Common\SettingFile.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Unity\Synchrogazer\Assets\Synchrogazer\Scripts\CommonSetting\SynchroGazerSetting.cs">
+      <Link>Models\Common\SynchroGazerSetting.cs</Link>
+    </Compile>
+    <Compile Include="Base\ActionCommand.cs" />
+    <Compile Include="Base\NotifiableBase.cs" />
+    <Compile Include="Models\ClickCommandExecutor.cs" />
+    <Compile Include="Models\MouseController.cs" />
+    <Compile Include="Models\MouseIgnoreUtils.cs" />
+    <Compile Include="Models\UdpReceiver.cs" />
+    <Compile Include="Models\UdpSender.cs" />
+    <Compile Include="Models\UnityProcessController.cs" />
+    <Compile Include="Models\UserOperationStateMachine\CommandEndState.cs" />
+    <Compile Include="Models\UserOperationStateMachine\DefaultState.cs" />
+    <Compile Include="Models\UserOperationStateMachine\LeftWinkState.cs" />
+    <Compile Include="Models\UserOperationStateMachine\NotPresentState.cs" />
+    <Compile Include="Models\UserOperationStateMachine\RightWinkState.cs" />
+    <Compile Include="Models\UserOperationStateMachine\StateMachine.cs" />
+    <Compile Include="Models\UserOperationStateMachine\StateMachineUtils.cs" />
+    <Compile Include="Models\UserOperationStateMachine\WinkStateBase.cs" />
+    <Compile Include="Models\SynchroGazerVolatileSetting.cs" />
+    <Compile Include="Views\CloseConfirmDialog.xaml.cs">
+      <DependentUpon>CloseConfirmDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Converter\BooleanReverseToVisibilityConverter.cs" />
+    <Compile Include="Views\GazerSettingPanel.xaml.cs">
+      <DependentUpon>GazerSettingPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GazerStatusPanel.xaml.cs">
+      <DependentUpon>GazerStatusPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\LicenseViewModel.cs" />
+    <Compile Include="Views\MouseEffectMark.xaml.cs">
+      <DependentUpon>MouseEffectMark.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PreviewMark.xaml.cs">
+      <DependentUpon>PreviewMark.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TemplateSelector\MainItemTemplateSelector.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\SettingViewModel.cs" />
+    <Compile Include="ViewModels\StatusViewModel.cs" />
+    <Compile Include="Models\SynchroGazerStatus.cs" />
+    <Compile Include="Tobii\Tobii.StreamEngine.Interop.cs" />
+    <Compile Include="Base\ViewModelBase.cs" />
+    <Page Include="Views\CloseConfirmDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GazerSettingPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GazerStatusPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Views\MouseEffectMark.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PreviewMark.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.ja-JP.resx" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Tobii\API-Reference.pdf" />
+    <None Include="Tobii\SDK-License.pdf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\license_logo_zunko.png" />
+    <Resource Include="Images\license_logo_pronama_chan.png" />
+    <Resource Include="Images\license_logo_query_chan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\face_icon_zunko.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\face_icon_query_chan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\face_icon_pronama_chan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\mouse_center_1.png" />
+    <Resource Include="Images\mouse_click_1.png" />
+    <Resource Include="Images\mouse_click_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon\Synchrogazer.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Tobii.Interaction.0.7.3\build\Tobii.Interaction.targets" Condition="Exists('..\packages\Tobii.Interaction.0.7.3\build\Tobii.Interaction.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>このプロジェクトは、このコンピューター上にない NuGet パッケージを参照しています。それらのパッケージをダウンロードするには、[NuGet パッケージの復元] を使用します。詳細については、http://go.microsoft.com/fwlink/?LinkID=322105 を参照してください。見つからないファイルは {0} です。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Tobii.Interaction.0.7.3\build\Tobii.Interaction.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Tobii.Interaction.0.7.3\build\Tobii.Interaction.targets'))" />
+    <Error Condition="!Exists('..\packages\Tobii.StreamEngine.1.2.1.305\build\Tobii.StreamEngine.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Tobii.StreamEngine.1.2.1.305\build\Tobii.StreamEngine.targets'))" />
+  </Target>
+  <Import Project="..\packages\Tobii.StreamEngine.1.2.1.305\build\Tobii.StreamEngine.targets" Condition="Exists('..\packages\Tobii.StreamEngine.1.2.1.305\build\Tobii.StreamEngine.targets')" />
+</Project>

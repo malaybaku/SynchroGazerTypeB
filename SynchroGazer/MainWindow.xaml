@@ -1,0 +1,60 @@
+﻿<Window x:Class="Baku.SynchroGazer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Baku.SynchroGazer"
+        xmlns:p="clr-namespace:Baku.SynchroGazer.Properties"
+        mc:Ignorable="d"
+        Icon="./Icon/Synchrogazer.ico"
+        Height="500" Width="600"
+        MinWidth="550"
+        WindowState="Minimized"
+        Title="{Binding Source={x:Static p:Resources.SettingWindowTitle}}"
+        >
+    <Window.DataContext>
+        <local:MainViewModel />
+    </Window.DataContext>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closed">
+            <i:InvokeCommandAction Command="{Binding DisposeCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <DockPanel LastChildFill="True">
+        <md:ColorZone DockPanel.Dock="Top" 
+                        Padding="0" md:ShadowAssist.ShadowDepth="Depth2"
+                        Mode="PrimaryDark">
+            <ListBox Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                     SelectedIndex="{Binding SelectedIndex, Mode=OneWayToSource, FallbackValue=0}"
+                     Style="{StaticResource MaterialDesignToolToggleListBox}">
+                <ListBox.Resources>
+                    <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignButtonTextBlock}"/>
+                </ListBox.Resources>
+                <ListBox.Template>
+                    <ControlTemplate TargetType="ListBox">
+                        <StackPanel Orientation="Horizontal" IsItemsHost="True" />
+                    </ControlTemplate>
+                </ListBox.Template>
+                <ListBoxItem>
+                    <TextBlock Text="{Binding Source={x:Static p:Resources.CurrentStatusTabHeader}}"/>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <TextBlock Text="{Binding Source={x:Static p:Resources.SettingsTabHeader}}"/>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <TextBlock Text="{Binding Source={x:Static p:Resources.LicenseTabHeader}}"/>
+                </ListBoxItem>
+            </ListBox>
+        </md:ColorZone>
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                        HorizontalScrollBarVisibility="Disabled">
+            <ContentControl Content="{Binding CurrentContent}">
+                <ContentControl.ContentTemplateSelector>
+                    <local:MainItemTemplateSelector/>
+                </ContentControl.ContentTemplateSelector>
+            </ContentControl>
+        </ScrollViewer>
+    </DockPanel>
+</Window>

@@ -286,3 +286,12 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+/SynchroGazer/Tobii/Tobii.StreamEngine.Interop.cs
+/SynchroGazer/Tobii/SDK-License.pdf
+/SynchroGazer/Tobii/API-Reference.pdf
+/SynchroGazer/Images/license_logo_zunko.png
+/SynchroGazer/Images/license_logo_query_chan.png
+/SynchroGazer/Images/license_logo_pronama_chan.png
+/SynchroGazer/Images/face_icon_zunko.png
+/SynchroGazer/Images/face_icon_query_chan.png
+/SynchroGazer/Images/face_icon_pronama_chan.png

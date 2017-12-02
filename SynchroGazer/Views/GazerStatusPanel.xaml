@@ -1,0 +1,131 @@
+﻿<UserControl x:Class="Baku.SynchroGazer.GazerStatusPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Baku.SynchroGazer"
+             xmlns:p="clr-namespace:Baku.SynchroGazer.Properties"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance local:StatusViewModel}"
+             d:DesignHeight="500" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style x:Key="HeadlineTextBlock" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignHeadlineTextBlock}"/>
+        <Style x:Key="BodyTextBlock" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignBody1TextBlock}"/>
+    </UserControl.Resources>
+    <StackPanel Margin="10">
+        <TextBlock Style="{StaticResource HeadlineTextBlock}"
+                   Text="{Binding Source={x:Static p:Resources.ActionTypeHeader}}"/>
+        <ListBox Margin="10"
+                 SelectedIndex="{Binding VolatileSetting.GazeActionNumber, Mode=TwoWay}">
+            <ListBox.Template>
+                <ControlTemplate TargetType="ListBox">
+                    <md:Card HorizontalAlignment="Left" md:ShadowAssist.ShadowDepth="Depth3">
+                        <StackPanel Orientation="Horizontal" IsItemsHost="True"/>
+                    </md:Card>
+                </ControlTemplate>
+            </ListBox.Template>
+            <ListBoxItem>
+                <Image Width="60" Height="60" Source="../Images/mouse_click_1.png"
+                       RenderOptions.BitmapScalingMode="HighQuality" />
+            </ListBoxItem>
+            <ListBoxItem>
+                <Image Width="60" Height="60" Source="../Images/mouse_click_2.png"
+                       RenderOptions.BitmapScalingMode="HighQuality" />
+            </ListBoxItem>
+            <ListBoxItem>
+                <Image Width="60" Height="60" Source="../Images/mouse_center_1.png"
+                       RenderOptions.BitmapScalingMode="HighQuality" />
+            </ListBoxItem>
+        </ListBox>
+
+        <TextBlock Style="{StaticResource HeadlineTextBlock}"
+                   Margin="0,10,0,0"
+                   Text="{Binding Source={x:Static p:Resources.StatusInfoHeader}}"/>
+        <!-- とりあえず絵を出す -->
+
+        <StackPanel Margin="10">
+            <Grid>
+                <Grid.Resources>
+                    <Style TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlock}">
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="Margin" Value="0,0,10,0"/>
+                    </Style>
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Grid.Row="0" Grid.Column="0"
+                           Text="{Binding Source={x:Static p:Resources.StatusInfoPresence}}"/>
+                <md:PackIcon Grid.Row="0" Grid.Column="1"
+                             Width="40" Height="40"
+                             Kind="Account"
+                             Visibility="{Binding Status.IsUserPresent, 
+                                                  Converter={StaticResource BooleanToVisibilityConverter}}"
+                             />
+                <md:PackIcon Grid.Row="0" Grid.Column="1"
+                             Width="40" Height="40"
+                             Kind="AccountOff"
+                             Foreground="{DynamicResource MaterialDesignCheckBoxDisabled}"
+                             Visibility="{Binding Status.IsUserPresent, 
+                                                  Converter={StaticResource BooleanReverseToVisibilityConverter}}"
+                             />
+
+                <TextBlock Grid.Row="1" Grid.Column="0"
+                           Text="Left Eye"/>
+                <md:PackIcon Grid.Row="1" Grid.Column="1" 
+                             Width="40" Height="40"
+                             Kind="Eye"
+                             Visibility="{Binding Status.LeftEyeOpened, 
+                                                  Converter={StaticResource BooleanToVisibilityConverter}}"
+                             />
+                <md:PackIcon Grid.Row="1" Grid.Column="1" 
+                             Width="40" Height="40"
+                             Kind="EyeOff"
+                             Foreground="{DynamicResource MaterialDesignCheckBoxDisabled}"
+                             Visibility="{Binding Status.LeftEyeOpened, 
+                                                  Converter={StaticResource BooleanReverseToVisibilityConverter}}"
+                             />
+
+                <TextBlock Grid.Row="2" Grid.Column="0"
+                           Text="Right Eye"/>
+                <md:PackIcon Grid.Row="2" Grid.Column="1" 
+                             Width="40" Height="40"
+                             Kind="Eye"
+                             Visibility="{Binding Status.RightEyeOpened, 
+                                                  Converter={StaticResource BooleanToVisibilityConverter}}"
+                             />
+                <md:PackIcon Grid.Row="2" Grid.Column="1"
+                             Width="40" Height="40"
+                             Kind="EyeOff"
+                             Foreground="{DynamicResource MaterialDesignCheckBoxDisabled}"
+                             Visibility="{Binding Status.RightEyeOpened, 
+                                                  Converter={StaticResource BooleanReverseToVisibilityConverter}}"
+                             />
+
+                <TextBlock Grid.Row="3" Grid.Column="0"
+                           Text="Position X"/>
+                <TextBlock Grid.Row="3" Grid.Column="1"
+                           Text="{Binding Status.DisplayX, StringFormat=0.0}"/>
+
+                <TextBlock Grid.Row="4" Grid.Column="0"
+                           Text="Position Y"/>
+                <TextBlock Grid.Row="4" Grid.Column="1"
+                           Text="{Binding Status.DisplayY, StringFormat=0.0}"/>
+
+
+            </Grid>
+        </StackPanel>
+
+    </StackPanel>
+</UserControl>
