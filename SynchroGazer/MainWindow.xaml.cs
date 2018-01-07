@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Globalization;
 using System.Windows;
 
@@ -17,6 +18,19 @@ namespace Baku.SynchroGazer
                 CultureInfo.GetCultureInfo("en-US");
 
             InitializeComponent();
+        }
+
+        protected override void OnContentRendered(EventArgs e)
+        {
+            base.OnContentRendered(e);
+
+            var source = PresentationSource.FromVisual(this);
+            if (source != null)
+            {
+                DpiChecker.DpiFactorX = source.CompositionTarget.TransformToDevice.M11;
+                DpiChecker.DpiFactorY = source.CompositionTarget.TransformToDevice.M22;
+            }
+
         }
 
         protected override void OnClosing(CancelEventArgs e)

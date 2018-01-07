@@ -59,8 +59,8 @@ namespace Baku.SynchroGazer
             }
         }
 
-        public double X => Status.DisplayX - PreviewMarkWindowLeft;
-        public double Y => Status.DisplayY - PreviewMarkWindowTop;
+        public double X => Status.DisplayX / DpiChecker.DpiFactorX - PreviewMarkWindowLeft;
+        public double Y => Status.DisplayY / DpiChecker.DpiFactorY - PreviewMarkWindowTop;
 
 
         private bool _showLargeMarkAlways = false;

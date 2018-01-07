@@ -26,10 +26,12 @@ namespace Baku.SynchroGazer
                     Status.Status
                     );
 
+                //_winEventSender = new WindowsEventSender(
                 _udpSender = new UdpSender(
                     Status.VolatileSetting,
                     Status.Status
                     );
+                //_winEventReceiver = new WindowsEventReceiver(Status.VolatileSetting);
                 _udpReceiver = new UdpReceiver(Status.VolatileSetting);
             }
 
@@ -55,6 +57,10 @@ namespace Baku.SynchroGazer
 
             _mouseController.MouseActionStart += (_, e) =>
             {
+                
+                double x = e.X / DpiChecker.DpiFactorX - Status.PreviewMarkWindowLeft;
+                double y = e.Y / DpiChecker.DpiFactorY - Status.PreviewMarkWindowTop;
+
                 switch (e.ActionType)
                 {
                     case MouseActionTypes.LeftSingleClick:
@@ -62,14 +68,14 @@ namespace Baku.SynchroGazer
                     case MouseActionTypes.CenterClick:
                         mark.Dispatcher.Invoke(() =>
                         {
-                            mark.SingleClickOn(e.X - Status.PreviewMarkWindowLeft, e.Y - Status.PreviewMarkWindowTop);
+                            mark.SingleClickOn(x, y);
                         });
                         break;
                     case MouseActionTypes.LeftDoubleClick:
                     case MouseActionTypes.RightDoubleClick:
                         mark.Dispatcher.Invoke(() =>
                         {
-                            mark.DoubleClickOn(e.X - Status.PreviewMarkWindowLeft, e.Y - Status.PreviewMarkWindowTop);
+                            mark.DoubleClickOn(x, y);
                         });
                         break;
                     default:
@@ -81,6 +87,8 @@ namespace Baku.SynchroGazer
             mark.Show();
         }
 
+        //private readonly WindowsEventSender _winEventSender;
+        //private readonly WindowsEventReceiver _winEventReceiver;
         private readonly UdpSender _udpSender;
         private readonly UdpReceiver _udpReceiver;
         private readonly MouseController _mouseController;
@@ -131,7 +139,10 @@ namespace Baku.SynchroGazer
         {
             Setting.Dispose();
             Status.Dispose();
+            _udpSender?.Dispose();
             _udpReceiver?.Dispose();
+            //_winEventSender?.Dispose();
+            //_winEventReceiver?.Dispose();
             _unityProcessController?.Dispose();
         }
     }

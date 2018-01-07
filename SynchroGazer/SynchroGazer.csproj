@@ -80,9 +80,13 @@
     <Compile Include="..\..\Unity\Synchrogazer\Assets\Synchrogazer\Scripts\CommonSetting\SynchroGazerSetting.cs">
       <Link>Models\Common\SynchroGazerSetting.cs</Link>
     </Compile>
+    <Compile Include="..\..\Unity\Synchrogazer\Assets\Synchrogazer\Scripts\CommonSetting\WindowsEventProtocol.cs">
+      <Link>Models\Common\WindowsEventProtocol.cs</Link>
+    </Compile>
     <Compile Include="Base\ActionCommand.cs" />
     <Compile Include="Base\NotifiableBase.cs" />
     <Compile Include="Models\ClickCommandExecutor.cs" />
+    <Compile Include="Models\DpiChecker.cs" />
     <Compile Include="Models\MouseController.cs" />
     <Compile Include="Models\MouseIgnoreUtils.cs" />
     <Compile Include="Models\UdpReceiver.cs" />
@@ -97,6 +101,8 @@
     <Compile Include="Models\UserOperationStateMachine\StateMachineUtils.cs" />
     <Compile Include="Models\UserOperationStateMachine\WinkStateBase.cs" />
     <Compile Include="Models\SynchroGazerVolatileSetting.cs" />
+    <Compile Include="Models\WindowsEventReceiver.cs" />
+    <Compile Include="Models\WindowsEventSender.cs" />
     <Compile Include="Views\CloseConfirmDialog.xaml.cs">
       <DependentUpon>CloseConfirmDialog.xaml</DependentUpon>
     </Compile>
